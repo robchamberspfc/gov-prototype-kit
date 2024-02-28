@@ -1,20 +1,284 @@
 {% extends "layouts/main.html" %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/breadcrumbs/macro.njk" import govukBreadcrumbs %}
 
-{% set pageName="Home" %}
+{% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+
+
+{% block pageTitle %}
+Content page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Alpha"
+  },
+  html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+}) }}
+
+
+{{ govukBreadcrumbs({
+    items: [
+      {
+        text: "Home",
+        href: "#"
+      },
+      {
+        text: "People",
+        href: "#"
+      },
+      {
+        text: "Rob Chambers",
+        href: "#"
+      }
+    ]
+  }) }}
+
+
+{{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+{% endblock %}
 
 {% block content %}
+
+
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-    {% include "govuk-prototype-kit/includes/homepage-top.njk" %}
-
-    <h1 class="govuk-heading-xl">
-      {{ serviceName }}
+    <h1 class="govuk-heading-l">
+      Rob Chambers
     </h1>
+    
 
-    {% include "govuk-prototype-kit/includes/homepage-bottom.njk" %}
+    
+    <p>
+      Current Address: Oakhill drive, Bristol <a href="/path/of/page">View this property</a>
+      <div class="govuk-warning-text">
+        <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+        <strong class="govuk-warning-text__text">
+          <span class="govuk-visually-hidden">Warning</span>
+          Property status under review
+        </strong>
+      </div>
+    </p>
+    
+    <p class="govuk-body-s">Last updated: 01/02/2024 | Source: <a href="#">Housing management system</a></p>
+    <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+    <h2>Tasks</h2>
+    <ul class="govuk-task-list">
+      <li class="govuk-task-list__item govuk-task-list__item--with-link">
+        <div class="govuk-task-list__name-and-hint">
+          <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-1-status">
+            Housing review
+          </a>
+        </div>
+        <div class="govuk-task-list__status" id="company-details-1-status">
+          In progress
+        </div>
+      </li>
+      <li class="govuk-task-list__item govuk-task-list__item--with-link">
+        <div class="govuk-task-list__name-and-hint">
+          <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-3-hint company-details-3-status">
+            Financial review
+          </a>
+          <div id="company-details-3-hint" class="govuk-task-list__hint">
+            Starts: 01 April 2024
+          </div>
+        </div>
+        <div class="govuk-task-list__status" id="company-details-3-status">
+          <strong class="govuk-tag govuk-tag--blue">
+            Upcoming
+          </strong>
+        </div>
+      </li>
+
+      <li class="govuk-task-list__item govuk-task-list__item--with-link">
+        <div class="govuk-task-list__name-and-hint">
+          <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-5-status">
+            References
+          </a>
+        </div>
+        <div class="govuk-task-list__status" id="company-details-5-status">
+          <strong class="govuk-tag govuk-tag--blue">
+            Complete
+          </strong>
+        </div>
+      </li>
+    </ul>
+    <p class="govuk-body-s">Last updated: 01/01/2024 | Source: <a href="#">Housing management system</a></p>
+    <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+  </div>
+  
+  <div class="govuk-grid-column-one-third">
+    {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+    {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Name"
+            },
+            value: {
+              text: "Robert Stephen Chambers"
+            }
+          },
+          {
+            key: {
+              text: "Date of birth"
+            },
+            value: {
+              text: "5 January 1984"
+            }
+          },
+          {
+            key: {
+              text: "Contact details"
+            },
+            value: {
+              html: '<p class="govuk-body">07700 900457</p><p class="govuk-body"><a href="mailto:sarah.phillips@example.com">sarah.phillips@example.com</a></p>'
+            }
+          }
+        ]
+      }) }}
+      <p class="govuk-body-s">Last updated: 05/01/2024 | Source: <a href="#">Housing management system</a></p>
   </div>
 </div>
+
+{% from "govuk/components/tabs/macro.njk" import govukTabs %}
+{% from "govuk/components/table/macro.njk" import govukTable %}
+
+{% set pastDayHtml %}
+<h2 class="govuk-heading-l">Dependents</h2> 
+<p><a href ="#">View family/household overview</a></p>
+{{ govukTable({
+  head: [
+    {
+      text: "Name"
+    },
+    {
+      text: "Age"
+    },
+    {
+      text: "Link"
+    }
+  ],
+  rows: [
+    [
+      {
+        text: "David Francis"
+      },
+      {
+        text: "3"
+      },
+      {
+        html: '<a href="#">View record</a>'
+      }
+    ],
+    [
+      {
+        text: "Paul Farmer"
+      },
+      {
+        text: "1"
+      },
+      {
+        html: '<a href="#">View record</a>'
+      }
+    ],
+    [
+      {
+        text: "Rita Patel"
+      },
+      {
+        text: "2"
+      },
+      {
+        html: '<a href="#">View record</a>'
+      }
+    ]
+  ]
+}) }}
+<p class="govuk-body-s">Last updated: 01/01/2024 | Source: <a href="#">Housing management system</a></p>
+{% endset -%}
+
+{% set pastWeekHtml %}
+<h2 class="govuk-heading-l">Health requirements</h2>
+
+  <p>You do not have permission to view this informatin</p>
+{% endset -%}
+
+{% set pastYearHtml %}
+<h2 class="govuk-heading-l">Record history</h2>
+{{ govukTable({
+  head: [
+    {
+      text: "Type"
+    },
+    {
+      text: "Date"
+    },
+    {
+      text: "Status"
+    }
+  ],
+  rows: [
+    [
+      {
+        text: "Dependents updated"
+      },
+      {
+        text: "02 January 2024"
+      },
+      {
+        text: "Awaiting approval"
+      }
+    ],
+    [
+      {
+        text: "Created"
+      },
+      {
+        text: "01 January 2024"
+      },
+      {
+        text: "Approved"
+      }
+    ]
+  ]
+}) }}
+<p class="govuk-body-s">Last updated: 03/01/2024 | Source: <a href="#">Housing management system</a></p>
+{% endset -%}
+
+{{ govukTabs({
+  items: [
+    {
+      label: "Dependents",
+      id: "past-day",
+      panel: {
+        html: pastDayHtml
+      }
+    },
+    {
+      label: "Health information",
+      id: "past-week",
+      panel: {
+        html: pastWeekHtml
+      }
+    }, 
+    {
+      label: "Record history",
+      id: "past-year",
+      panel: {
+        html: pastYearHtml
+      }
+    }
+  ]
+}) }}
+
 
 {% endblock %}
