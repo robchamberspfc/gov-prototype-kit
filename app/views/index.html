@@ -53,6 +53,20 @@ Content page template – {{ serviceName }} – GOV.UK Prototype Kit
     <h1 class="govuk-heading-l">
       Rob Chambers
     </h1>
+    <div class="govuk-error-summary" data-module="govuk-error-summary">
+      <div role="alert">
+        <h2 class="govuk-error-summary__title">
+          There is a problem
+        </h2>
+        <div class="govuk-error-summary__body">
+          <ul class="govuk-list govuk-error-summary__list">
+            <li>
+              <a href="#">Date of birth mismatch</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
 
     <p>
       Current Address: Oakhill drive, Bristol <a href="/path/of/page">View this property</a>
@@ -98,7 +112,22 @@ Content page template – {{ serviceName }} – GOV.UK Prototype Kit
             }
           ]
         }) }}
-    <p class="govuk-body-s">Last updated: 05/01/2024 | Source: <a href="#">Housing management system</a></p>
+        <p class="govuk-body-s">Last updated: 01/02/2024 | Source: <a href="#">Housing management system</a></p>
+
+        {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+        {{ govukSummaryList({
+          rows: [
+            {
+              key: {
+                text: "Date of birth"
+              },
+              value: {
+                text: "6 January 1984"
+              }
+            }
+          ]
+        }) }}
+    <p class="govuk-body-s">Last updated: 06/01/2024 | Source: <a href="#">Housing support system</a></p>
   </div>
 </div>
 <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
@@ -257,6 +286,47 @@ Content page template – {{ serviceName }} – GOV.UK Prototype Kit
 }) }}
 <p class="govuk-body-s">Last updated: 03/01/2024 | Source: <a href="#">Housing management system</a></p>
 {% endset -%}
+{% set repairs %}
+<h2 class="govuk-heading-l">Repairs</h2>
+{{ govukTable({
+  head: [
+    {
+      text: "Type"
+    },
+    {
+      text: "Date"
+    },
+    {
+      text: "Status"
+    }
+  ],
+  rows: [
+    [
+      {
+        text: "Windows"
+      },
+      {
+        text: "02 January 2024"
+      },
+      {
+        text: "Awaiting approval"
+      }
+    ],
+    [
+      {
+        text: "Oven"
+      },
+      {
+        text: "01 January 2024"
+      },
+      {
+        text: "Complete"
+      }
+    ]
+  ]
+}) }}
+<p class="govuk-body-s">Last updated: 03/01/2024 | Source: <a href="#">Housing management system</a></p>
+{% endset -%}
 <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
 {{ govukTabs({
   items: [
@@ -272,6 +342,13 @@ Content page template – {{ serviceName }} – GOV.UK Prototype Kit
       id: "past-week",
       panel: {
         html: pastWeekHtml
+      }
+    }, 
+    {
+      label: "Repairs requested",
+      id: "repairs",
+      panel: {
+        html: repairs
       }
     }, 
     {
