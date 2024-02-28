@@ -53,7 +53,7 @@ Content page template – {{ serviceName }} – GOV.UK Prototype Kit
     <h1 class="govuk-heading-l">
       Rob Chambers
     </h1>
-    
+
     <p>
       Current Address: Oakhill drive, Bristol <a href="/path/of/page">View this property</a>
       <div class="govuk-warning-text">
@@ -64,9 +64,49 @@ Content page template – {{ serviceName }} – GOV.UK Prototype Kit
         </strong>
       </div>
     </p>
-    
     <p class="govuk-body-s">Last updated: 01/02/2024 | Source: <a href="#">Housing management system</a></p>
-    <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+    
+  </div>
+  <div class="govuk-grid-column-one-third">
+    {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+    {{ govukSummaryList({
+          rows: [
+            {
+              key: {
+                text: "Name"
+              },
+              value: {
+                text: "Robert Stephen Chambers"
+              }
+            },
+            {
+              key: {
+                text: "Date of birth"
+              },
+              value: {
+                text: "5 January 1984"
+              }
+            },
+            {
+              key: {
+                text: "Contact details"
+              },
+              value: {
+                html: '<p class="govuk-body">07700 900457</p><p class="govuk-body"><a href="mailto:sarah.phillips@example.com">sarah.phillips@example.com</a></p>'
+              }
+            }
+          ]
+        }) }}
+    <p class="govuk-body-s">Last updated: 05/01/2024 | Source: <a href="#">Housing management system</a></p>
+  </div>
+</div>
+<hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+
     <h2>Tasks</h2>
     <ul class="govuk-task-list">
       <li class="govuk-task-list__item govuk-task-list__item--with-link">
@@ -81,7 +121,8 @@ Content page template – {{ serviceName }} – GOV.UK Prototype Kit
       </li>
       <li class="govuk-task-list__item govuk-task-list__item--with-link">
         <div class="govuk-task-list__name-and-hint">
-          <a class="govuk-link govuk-task-list__link" href="#" aria-describedby="company-details-3-hint company-details-3-status">
+          <a class="govuk-link govuk-task-list__link" href="#"
+            aria-describedby="company-details-3-hint company-details-3-status">
             Financial review
           </a>
           <div id="company-details-3-hint" class="govuk-task-list__hint">
@@ -109,41 +150,6 @@ Content page template – {{ serviceName }} – GOV.UK Prototype Kit
       </li>
     </ul>
     <p class="govuk-body-s">Last updated: 01/01/2024 | Source: <a href="#">Housing management system</a></p>
-    <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
-  </div>
-  
-  <div class="govuk-grid-column-one-third">
-    {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
-
-    {{ govukSummaryList({
-        rows: [
-          {
-            key: {
-              text: "Name"
-            },
-            value: {
-              text: "Robert Stephen Chambers"
-            }
-          },
-          {
-            key: {
-              text: "Date of birth"
-            },
-            value: {
-              text: "5 January 1984"
-            }
-          },
-          {
-            key: {
-              text: "Contact details"
-            },
-            value: {
-              html: '<p class="govuk-body">07700 900457</p><p class="govuk-body"><a href="mailto:sarah.phillips@example.com">sarah.phillips@example.com</a></p>'
-            }
-          }
-        ]
-      }) }}
-      <p class="govuk-body-s">Last updated: 05/01/2024 | Source: <a href="#">Housing management system</a></p>
   </div>
 </div>
 
@@ -151,8 +157,8 @@ Content page template – {{ serviceName }} – GOV.UK Prototype Kit
 {% from "govuk/components/table/macro.njk" import govukTable %}
 
 {% set pastDayHtml %}
-<h2 class="govuk-heading-l">Dependents</h2> 
-<p><a href ="#">View family/household overview</a></p>
+<h2 class="govuk-heading-l">Dependents</h2>
+<p><a href="#">View family/household overview</a></p>
 {{ govukTable({
   head: [
     {
@@ -207,7 +213,7 @@ Content page template – {{ serviceName }} – GOV.UK Prototype Kit
 {% set pastWeekHtml %}
 <h2 class="govuk-heading-l">Health requirements</h2>
 
-  <p>You do not have permission to view this informatin</p>
+<p>You do not have permission to view this information</p>
 {% endset -%}
 
 {% set pastYearHtml %}
@@ -251,7 +257,7 @@ Content page template – {{ serviceName }} – GOV.UK Prototype Kit
 }) }}
 <p class="govuk-body-s">Last updated: 03/01/2024 | Source: <a href="#">Housing management system</a></p>
 {% endset -%}
-
+<hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
 {{ govukTabs({
   items: [
     {
